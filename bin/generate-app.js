@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-const { execSync, exec } = require('child_process');
 const path = require('path');
-var shell = require('shelljs');
 const fs = require('fs');
 var spawn = require('child_process').spawn;
 
@@ -198,17 +196,20 @@ async function main() {
             block([
                 `dotnet restore`,
                 `cd ${projectName}`,
-                `npm create vite@latest clientapp -- --template react-ts`,
-                `npm i`,
-                `npm install --save-dev vite-plugin-mkcert`
+                `npm create vite@latest clientapp -- --template react-ts`
             ], () => {
 
-                process.stdout.write(`\n`);
-                fs.writeFileSync(path.join(`${projectPath}/clientapp`, 'vite.config.ts'), viteConfigTemplate);
-                process.stdout.write(`\x1B[32mConfiguring vite ✓ \x1B[0m\n`);
-                fs.rm(path.join(projectPath, 'bin'), (error) => {});
-                process.stdout.write(`\x1B[32mRemoving unnecessary files ✓ \x1B[0m`);
-                console.log(`
+                block([
+                    `npm i`,
+                    `npm install --save-dev vite-plugin-mkcert`
+                ], () => {
+
+                    process.stdout.write(`\n`);
+                    fs.writeFileSync(path.join(`${projectPath}/clientapp`, 'vite.config.ts'), viteConfigTemplate);
+                    process.stdout.write(`\x1B[32mConfiguring vite ✓ \x1B[0m\n`);
+                    fs.rm(path.join(projectPath, 'bin'), (error) => { });
+                    process.stdout.write(`\x1B[32mRemoving unnecessary files ✓ \x1B[0m`);
+                    console.log(`
 ..................P@@Y..................
 ..................Y@&7..................
 ..............    :PJ.    ..............
@@ -229,6 +230,9 @@ async function main() {
 ......^:..  .^~Y##BBBB#B?~^.  ..:^......
 ...... ......  .?G&@@&P!. ...... .......
             `);
+                }, {
+                    message: 'Installing dependencies...'
+                });
             }, {
                 message: 'Create React + Typescript + vite.js App...'
             });
