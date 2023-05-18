@@ -15,7 +15,7 @@
     "build": "parcel build index.js"
   },
   "bin": {
-    "create-boilerplate": "./bin/generate-app.js"
+    "rtvnet7-app": "./bin/generate-app.js"
   },
   "bugs": {
     "url": "https://github.com/mariano068/rtvNet7/issues"
