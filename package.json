@@ -1,0 +1,28 @@
+{
+  "name": "@virtual-registry/rtvnet7",
+  "version": "1.0.0",
+  "description": "Boilerplate for React + Typescript + Vite.js + AspNet7 App",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariano068/rtvNet7.git"
+  },
+  "author": "Mariano De Luca",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.js"
+  },
+  "bin": {
+    "create-boilerplate": "./bin/generate-app.js"
+  },
+  "bugs": {
+    "url": "https://github.com/mariano068/rtvNet7/issues"
+  },
+  "homepage": "https://github.com/mariano068/rtvNet7#readme",
+  "dependencies": {
+    "rimraf": "^5.0.1",
+    "shelljs": "^0.8.5"
+  }
+}
