@@ -123,7 +123,7 @@ const csprojTemplate = `
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="7.0.5" />
   </ItemGroup>
 
-<PropertyGroup>
+    <PropertyGroup>
 		<SpaRoot>clientapp\</SpaRoot>
 	</PropertyGroup>
 
@@ -194,14 +194,17 @@ async function main() {
             fs.writeFileSync(path.join(projectPath, `${projectName}.csproj`), csprojTemplate);
 
             block([
-                `dotnet restore`,
-                `cd ${projectName}`,
-                `npm create vite@latest clientapp -- --template react-ts`
+                `dotnet restore`
             ], () => {
 
+                process.stdout.write(`\n`);
+
                 block([
+                    `cd ${projectName}`,
+                    `npm create vite@latest clientapp -- --template react-ts`,
+                    `cd clientapp`,
+                    `npm install --save-dev vite-plugin-mkcert`,
                     `npm i`,
-                    `npm install --save-dev vite-plugin-mkcert`
                 ], () => {
 
                     process.stdout.write(`\n`);
@@ -231,10 +234,10 @@ async function main() {
 ...... ......  .?G&@@&P!. ...... .......
             `);
                 }, {
-                    message: 'Installing dependencies...'
+                    message: 'Create React + Typescript + vite.js App...'
                 });
             }, {
-                message: 'Create React + Typescript + vite.js App...'
+                message: 'Restoring packages...'
             });
         }, {
             message: 'Create Net7 MVC Template...'
