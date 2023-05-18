@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "Boilerplate for React + Typescript + Vite.js + AspNet7 App",
   "main": "index.js",
+  "type":"module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mariano068/rtvNet7.git"
