@@ -1,79 +1,42 @@
-#!/usr/bin/env node
+import * as p from '@clack/prompts';
+import color from 'picocolors';
 import path from 'path';
-import fs from 'fs';
-import { programTemplate } from '../assets/program-template.js';
-import { csprojTemplate } from '../assets/csproj-template.js';
 import { block } from '../utils/block.js';
-import { gitlogo } from '../utils/gitlogo.js';
-import { viteConfigTemplate } from '../assets/vite-template.js';
-
-if (process.argv.length < 3) {
-    console.log('....');
-    process.exit(1);
-}
-
-const projectName = process.argv[2];
-const currentPath = process.cwd();
-const projectPath = path.join(currentPath, projectName);
-
-try {
-    fs.mkdirSync(projectPath);
-} catch (err) {
-    if (err.code === 'EEXIST') {
-        console.log(`The file ${projectName} already exist in the current directory, please give it another name.`);
-    } else {
-        console.log(error);
-    }
-    process.exit(1);
-}
+import { note } from '../utils/note.js';
+import { netCmd, pkmCmd, UseNetTemplates, UseReactTemplates, userPJ } from '../utils/rtvNet7.js';
 
 async function main() {
 
-    try {
+	console.clear();
+	p.intro(`${color.bgCyan(color.black(' Create App '))}`);
 
-        block([
-            `dotnet new mvc --name ${projectName}`,
-            `cd ${projectName}`,
-            `dotnet restore`
-        ], () => {
+	const project = await userPJ();
 
-            process.stdout.write(`\n`);
+	const s = p.spinner();
+	const currentPath = process.cwd();
+	const projectPath = path.join(currentPath, project.__name);
 
-            fs.writeFileSync(path.join(projectPath, 'Program.cs'), programTemplate);
-            fs.writeFileSync(path.join(projectPath, `${projectName}.csproj`), csprojTemplate);
+	s.start(`Creating ${project.__f} MVC Template`);
 
-            block([
-                `dotnet restore`
-            ], () => {
+	block(netCmd(project.__name, project.__f), () => {
 
-                process.stdout.write(`\n`);
+		s.stop(`Create ${project.__f} MVC Template`);
+		s.start('Creating React Project');
 
-                block([
-                    `cd ${projectName}`,
-                    `npm create vite@latest clientapp -- --template react-ts`,
-                    `cd clientapp`,
-                    `npm install --save-dev vite-plugin-mkcert`,
-                    `npm i`,
-                ], () => {
+		UseNetTemplates(project, projectPath, currentPath);
 
-                    process.stdout.write(`\n`);
-                    fs.writeFileSync(path.join(`${projectPath}/clientapp`, 'vite.config.ts'), viteConfigTemplate);
-                    process.stdout.write(`\x1B[32mConfiguring vite ✓ \x1B[0m\n`);
-                    fs.rm(path.join(projectPath, 'bin'), (error) => { });
-                    process.stdout.write(`\x1B[32mRemoving unnecessary files ✓ \x1B[0m`);
-                    gitlogo();
-                }, {
-                    message: 'Create React + Typescript + vite.js App...'
-                });
-            }, {
-                message: 'Restoring packages...'
-            });
-        }, {
-            message: 'Create Net7 MVC Template...'
-        });
-    } catch (error) {
-        console.log(error);
-    }
+		block(pkmCmd(project.__name, project.__pkm, project.__template), () => {
+
+			s.stop("Create React Project");
+			s.start('Removing unnecessary files');
+
+			UseReactTemplates(project, projectPath, currentPath);
+			
+			s.stop("Removed unnecessary files");
+
+			note(project);
+		});
+	});
 }
 
-main();
+main().catch(console.error);
