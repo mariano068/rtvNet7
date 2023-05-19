@@ -6,7 +6,7 @@
 ---
 ### **1. Create app template**
 Run the command and replace with the name you want to give to your project
-> `npx @virtual-registry/rtvnet7@1.0.4 YourAppName`
+> `npx @virtual-registry/rtvnet7 YourAppName`
 ---
 ### 2. **Install clientapp dependencies**
 Run one of the following commands in the clientapp folder
