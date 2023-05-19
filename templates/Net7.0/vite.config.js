@@ -1,4 +1,4 @@
-
+export const vite = `
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import mkcert from 'vite-plugin-mkcert'
@@ -11,5 +11,5 @@ export default defineConfig({
         port: 6363
     },
     plugins: [react(), mkcert()],
-})
+})`;
 

@@ -1,6 +1,7 @@
 {
   "name": "@virtual-registry/rtvnet7",
-  "version": "1.0.8",
+  "version": "1.0.14",
+
   "description": "Boilerplate for React + Typescript + Vite.js + AspNet7 App",
   "main": "./bin/generate-app.js",
   "type": "module",

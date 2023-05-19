@@ -1,4 +1,4 @@
-
+export const csproj = `
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -26,3 +26,4 @@
 		</ItemGroup>
 	</Target>  
 </Project>
+`

@@ -1,4 +1,4 @@
-
+export const program = `
 using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.Net.Http.Headers;
 
@@ -48,3 +48,4 @@ else
     });
 }
 app.Run();
+`;

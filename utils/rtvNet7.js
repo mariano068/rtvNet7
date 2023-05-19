@@ -2,6 +2,9 @@ import * as p from '@clack/prompts';
 import color from 'picocolors';
 import fs from 'fs';
 import path from 'path';
+import { program } from '../templates/Net7.0/program.js';
+import { csproj } from '../templates/Net7.0/.csproj.js';
+import { vite } from '../templates/Net7.0/vite.config.js';
 
 // Riferimento alla cartella del progetto React
 const CLIENT_APP_REF = 'clientapp';
@@ -107,55 +110,20 @@ export const userPJ = async () => {
   return project;
 }
 
-const readFile = (file, cb) => {
-  fs.readFile(file, 'utf8', function (err, data) {
-    if (!err) {
-      cb(data.toString().split('\n'))
-    } else {
-      console.log(err)
-    }
-  });
-}
-
 export const UseReactTemplates = (project, projectPath, currentPath) => {
 
-  readFile(`${currentPath}/rtvNet7/templates/${project.__f}/vite.config.txt`, function (_file) {
-    fs.writeFileSync(path.join(`${projectPath}/clientapp`, 'vite.config.js'), _file.join('\n'));
-  });
+  fs.writeFileSync(path.join(`${projectPath}/clientapp`, 'vite.config.js'), vite);
   fs.rm(path.join(projectPath, 'bin'), (error) => { });
-} 
+}
 
 export const UseNetTemplates = (project, projectPath, currentPath) => {
 
-  /**
-   * 1. Leggi il file Program.txt
-   * 2. Sostituisci i placeholder con i valori del progetto
-   * 3. Scrivi il file Program.cs
-   */
-  readFile(`${currentPath}/rtvNet7/templates/${project.__f}/Program.txt`, function (data) {
-    const _file = data.map((line) => {
-      if (line.includes('{{CLIENT_APP_REF}}')) {
-        return line.replace('{{CLIENT_APP_REF}}', CLIENT_APP_REF);
-      }
-      return line;
-    });
-    fs.writeFileSync(path.join(projectPath, 'Program.cs'), _file.join('\n'));
-  });
-  /**
-   * 1. Leggi il file .csproj
-   * 2. Sostituisci i placeholder con i valori del progetto
-   * 3. Scrivi il file .csproj
-   */
-  readFile(`${currentPath}/rtvNet7/templates/${project.__f}/.csproj.txt`, function (data) {
-    const _file = data.map((line) => {
-      if (line.includes('{{CLIENT_APP_REF}}')) {
-        return line.replace('{{CLIENT_APP_REF}}', CLIENT_APP_REF);
-      }
-      if (line.includes('{{PKM}}')) {
-        return line.replace('{{PKM}}', project.__pkm);
-      }
-      return line;
-    });
-    fs.writeFileSync(path.join(projectPath, `${project.__name}.csproj`), _file.join('\n'))
-  });
+  fs.writeFileSync(
+    path.join(projectPath, 'Program.cs'),
+    program.replace('{{CLIENT_APP_REF}}', CLIENT_APP_REF)
+  );
+  fs.writeFileSync(
+    path.join(projectPath, `${project.__name}.csproj`),
+    csproj.replace('{{CLIENT_APP_REF}}', CLIENT_APP_REF).replace('{{PKM}}', project.__pkm)
+  )
 }
