@@ -1,19 +1,12 @@
-# Template for React Typescript Vite.js NetCore7
+# Template for React Typescript Vite.js NetCore7 Project
 
 ### **Prerequisites**
 - npm
 - net7 runtime  
 ---
 ### **1. Create app template**
-Run the command and replace with the name you want to give to your project
-> `npx @virtual-registry/rtvnet7 YourAppName`
----
-### 2. **Install clientapp dependencies**
-Run one of the following commands in the clientapp folder
-## npm
-> `npm install`
-## yarn
-> `yarn`
+Run the command
+> `npx @virtual-registry/rtvnet7`
 ---
 ### 3. **Start your app**
 - **Start AspNet app**   
@@ -25,6 +18,7 @@ Run one of the following commands in the clientapp folder
 - **Start clientapp**  
   Search clientapp folder and run the command
  > `yarn run dev`
+ > `npm run dev`
  
  to verify that the react app is working correctly enter {`your domain`}/app in your browser
 
