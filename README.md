@@ -1,26 +1,26 @@
-# Template for React Typescript Vite.js NetCore7 Project
+# Template for React Typescript Vite.js .Net Project
 
 ### **Prerequisites**
-- npm
-- net7 runtime  
+- node
+- .NET  
 ---
 ### **1. Create app template**
-Run the command
-> `npx @virtual-registry/rtvnet7`
+Run the following command:
+> `npx create-rvnet-app`
 ---
 ### 3. **Start your app**
 - **Start AspNet app**   
-  In the root of your project launch
+  In the root of your project, run the command:
   > `dotnet run start`  
 
-  Alternatively check in your editor the option to launch the application.  
-  ex: If you use `visual studio` you can use Ctrl + F5 or f5 shortcuts.
+  Alternatively, use the option in your editor to launch the application. For example, if you use Visual Studio, you can use the shortcuts Ctrl + F5 or F5.
 - **Start clientapp**  
-  Search clientapp folder and run the command
+Go to the clientapp folder and run one of the following commands:
  > `yarn run dev`
+
  > `npm run dev`
  
- to verify that the react app is working correctly enter {`your domain`}/app in your browser
+ To verify that the React app is working correctly, enter {your domain}/app in your browser.
 
 ## You should have a situation similar to this
 ![client app example](/assets/images/app-ex.PNG)

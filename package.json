@@ -1,27 +1,32 @@
 {
-  "name": "@virtual-registry/rtvnet7",
+  "name": "create-rvnet-app",
   "version": "1.0.14",
-
-  "description": "Boilerplate for React + Typescript + Vite.js + AspNet7 App",
-  "main": "./bin/generate-app.js",
-  "type": "module",
+  "description": "Boilerplate for React + Vite.js + AspNet7 App",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mariano068/rtvNet7.git"
+    "url": "git+https://github.com/mariano068/rvnet.git"
   },
   "author": "Mariano De Luca",
   "license": "ISC",
+  "scripts": {
+    "build": "tsc --build",
+    "deploy": "rimraf ./dist && npm run build && npm publish"
+  },
   "bin": {
-    "generate-app": "./bin/generate-app.js"
+    "create-rvnet-app": "./dist/bin/build.js"
   },
   "bugs": {
-    "url": "https://github.com/mariano068/rtvNet7/issues"
+    "url": "https://github.com/mariano068/rvnet/issues"
   },
-  "homepage": "https://github.com/mariano068/rtvNet7#readme",
+  "homepage": "https://github.com/mariano068/rvnet#readme",
   "dependencies": {
     "@clack/prompts": "^0.6.3",
     "picocolors": "^1.0.0",
     "rimraf": "^5.0.1",
     "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.1",
+    "typescript": "^5.0.4"
   }
 }
