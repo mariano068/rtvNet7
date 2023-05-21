@@ -4,11 +4,11 @@
 - node
 - .NET  
 ---
-### **1. Create app template**
+### **Create app template**
 Run the following command:
 > `npx create-rvnet-app`
 ---
-### 3. **Start your app**
+### **Start your app**
 - **Start AspNet app**   
   In the root of your project, run the command:
   > `dotnet run start`  
