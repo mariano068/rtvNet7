@@ -1,4 +1,5 @@
-# Template for React Typescript Vite.js .Net Project
+
+# (Deprecated) Template for React Typescript Vite.js .Net Project
 
 ### **Prerequisites**
 - node
